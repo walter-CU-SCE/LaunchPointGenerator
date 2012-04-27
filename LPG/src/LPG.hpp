@@ -1,16 +1,12 @@
-#include <iostream>
-
-
-
-
-namespace LPG{
-
 #ifndef LPG_HPP
 #define LPG_HPP
 
+#include <iostream>
+
+namespace LPG{
+
 	char *stub;			//model to be solved
         
-	
-	
-#endif LPG_HPP
 };
+
+#endif // LPG_HPP

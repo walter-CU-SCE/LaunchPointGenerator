@@ -1,3 +1,6 @@
+#ifndef POINT_HPP
+#define POINT_HPP
+
 #include <iostream> 
 
 #include "ModelInfo.hpp"
@@ -5,9 +8,6 @@
 using namespace std;
 
 namespace LPG{
-
-#ifndef POINT_HPP
-#define POINT_HPP
 
     const double FeasThres = 1e-6;              //point is feasible if max violation is less than FeasThres
 	
@@ -45,7 +45,6 @@ namespace LPG{
             bool morePromising(Point P);        //is P more promising?
             string getLocation();               //returns location in string format for output to file
     };
+};
 
 #endif
-	
-};

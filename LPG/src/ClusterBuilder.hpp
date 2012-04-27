@@ -1,3 +1,6 @@
+#ifndef CLUSTERBUILDER_HPP
+#define CLUSTERBUILDER_HPP
+
 #include <iostream>
 #include <vector>
 
@@ -8,9 +11,6 @@
 using namespace std;
 
 namespace LPG{
-
-#ifndef CLUSTERBUILDER_HPP
-#define CLUSTERBUILDER_HPP
 
     struct PromPeak{        //structure for prominent peaks
         int bin;            //index of pp
@@ -60,6 +60,6 @@ namespace LPG{
             double getTime();               //return calculation time
     };
 
-#endif
-
 };
+
+#endif

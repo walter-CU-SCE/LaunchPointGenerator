@@ -1,11 +1,11 @@
+#ifndef MODELINFO_HPP
+#define MODELINFO_HPP
+
 #include <iostream>
 
 #include "../../solvers/asl.h"
 
 namespace LPG{
-
-#ifndef MODELINFO_HPP
-#define MODELINFO_HPP
 
 //make life easier: these are defined in asl, but without the "m_pModel->" part
 #ifdef conval
@@ -47,6 +47,6 @@ namespace LPG{
             double getNegInfty();       //return -infinity value
     };
 
-#endif
-
 };
+
+#endif

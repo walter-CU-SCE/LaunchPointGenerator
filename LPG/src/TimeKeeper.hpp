@@ -1,3 +1,6 @@
+#ifndef TIMEKEEPER_HPP
+#define TIMEKEEPER_HPP
+
 #include <iostream> 
 #include <sys/resource.h>
 
@@ -5,8 +8,7 @@ using namespace std;
 
 namespace LPG{
 
-#ifndef TIMEKEEPER_HPP
-#define TIMEKEEPER_HPP
+
 	
 	class TimeKeeper{		
 	  private:
@@ -20,7 +22,6 @@ namespace LPG{
                 void reset();                   //set the timer
 	};
 
-
-	
-#endif
 };
+
+#endif

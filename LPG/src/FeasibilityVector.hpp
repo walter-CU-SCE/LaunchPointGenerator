@@ -1,3 +1,6 @@
+#ifndef FEASIBILITYVECTOR_HPP
+#define FEASIBILITYVECTOR_HPP
+
 #include <iostream> 
 #include <list>
 
@@ -8,9 +11,6 @@ using namespace std;
 
 namespace LPG{
 
-#ifndef FEASIBILITYVECTOR_HPP
-#define FEASIBILITYVECTOR_HPP
-	
     class FeasibilityVector{
         private:
             double *v;                          //the actual vector
@@ -31,7 +31,6 @@ namespace LPG{
             int getId();                        //return the constraint number Fv was calculated for, -1 if not set
     };
 
-
-	
-#endif
 };
+
+#endif

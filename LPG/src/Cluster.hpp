@@ -1,3 +1,6 @@
+#ifndef CLUSTER_HPP
+#define CLUSTER_HPP
+
 #include <iostream>
 #include <vector>
 
@@ -6,9 +9,6 @@
 using namespace std;
 
 namespace LPG{
-
-#ifndef CLUSTER_HPP
-#define CLUSTER_HPP
 
     class Cluster{
         private:
@@ -28,6 +28,6 @@ namespace LPG{
 
     };
 
-#endif
-
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef CONSTRAINTCONSENSUS_HPP
+#define CONSTRAINTCONSENSUS_HPP
+
 #include <iostream> 
 #include <vector>
 
@@ -10,9 +13,6 @@ using namespace std;
 
 namespace LPG{
 
-#ifndef CONSTRAINTCONSENSUS_HPP
-#define CONSTRAINTCONSENSUS_HPP
-	
     class ConstraintConsensus{		//abstract class
         private:
             vector<Point> lPoints;	//list of points, first is provided as aurgument
@@ -48,9 +48,5 @@ namespace LPG{
             void getBestPoint(Point *P);                //return the point in the list in terms of MaxVio
             double getTotalTime();                      //return the total time taken by CC run
     };
-
-
-	
-	
-#endif
 };
+#endif

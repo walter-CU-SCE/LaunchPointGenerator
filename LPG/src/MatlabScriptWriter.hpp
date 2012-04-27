@@ -1,3 +1,6 @@
+#ifndef MATLABSCRIPTWRITER_HPP
+#define MATLABSCRIPTWRITER_HPP
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -10,9 +13,6 @@
 using namespace std;
 
 namespace LPG{
-
-#ifndef MATLABSCRIPTWRITER_HPP
-#define MATLABSCRIPTWRITER_HPP
 
 
     class MatlabScriptWriter{
@@ -29,6 +29,6 @@ namespace LPG{
             void writePlotFreqDist(vector<Freq> F, string fileTitle);       //write FreqDist file
     };
 
-#endif
-
 };
+
+#endif
