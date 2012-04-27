@@ -13,7 +13,7 @@ using namespace std;
 
 namespace LPG{
 
-    class ConstraintConsensus{		//abstract class
+    class ConstraintConsensus{
         private:
             vector<Point> lPoints;	//list of points, first is provided as aurgument
             vector<double> lTimes;	//list of times in secs, elapsed time to each point
@@ -35,7 +35,7 @@ namespace LPG{
                     int t,                  //concensus type
                     ModelInfo *pModel,      //model info
                     double mt);             //max run time
-            ~ConstraintConsensus();                                         //virtual so it gets executed
+            virtual ~ConstraintConsensus();
             //ConstraintConsensus(const ConstraintConsensus &CC);           //copy constructor
             //ConstraintConsensus& operator=(const ConstraintConsensus &CC);//assignment operator
 
