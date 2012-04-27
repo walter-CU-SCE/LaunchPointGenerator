@@ -36,7 +36,7 @@ void Cluster::addPoint(Point P){
 Point Cluster::getLaunchPoint() const {
 
     if(lpIndex>lPoints.size() || lpIndex<0){
-        cerr << "lpIndex out of Range!" << endl;
+        cerr << "lpIndex out of Range! " << lpIndex << endl;
         exit(0);
     }
   return lPoints[lpIndex];

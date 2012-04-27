@@ -174,7 +174,7 @@ void ClusterBuilder::calcFrequencies(){
 vector<Freq> ClusterBuilder::getFreq() const {
 
     if(F.size()<2){
-        cout << "ClusterBuilder: F isn't defined yet!" << endl;
+        cerr << "ClusterBuilder: F isn't defined yet!" << endl;
         exit(0);
     }
     return F;
@@ -183,7 +183,7 @@ vector<Freq> ClusterBuilder::getFreq() const {
 vector<Cluster> ClusterBuilder::getClusters() const {
 
     if(lClusters.size()<1){
-        cout << "ClusterBuilder: no clusters available yet!" << endl;
+        cerr << "ClusterBuilder: no clusters available yet!" << endl;
         exit(0);
     }
     return lClusters;
@@ -216,7 +216,7 @@ void ClusterBuilder::extractPP(){
             //cout << "w reduced to: " << w << endl;
         }
         if(w<1){
-            cout << "Critical distance extraction fail! w=" << w << endl;
+            cerr << "Critical distance extraction fail! w=" << w << endl;
             exit(0);
         }
         for(int i=w; i< F.size()-w; i++){
@@ -239,7 +239,7 @@ void ClusterBuilder::extractPP(){
             //cout << "w reduced to: " << w << endl;
         }
         else if(promPeaks.size()==0 && w==1){
-            cout << "Failed to extract critical distance!" << endl;
+            cerr << "Failed to extract critical distance!" << endl;
             exit(0);
         }
     }

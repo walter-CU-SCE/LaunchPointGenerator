@@ -210,7 +210,7 @@ double Point::getConVio(int i) const{
     if(i<m_pModel->n_con && i > -1)
         return v[i];
     else{
-        cout << "Out of range: Point::getConVio()" << endl;
+        cerr << "Out of range: Point::getConVio(" << i << ")" << endl;
         return 1;
     }
 };
@@ -220,7 +220,7 @@ double Point::getJac(int i) const{
     if(i<m_pModel->nzc && i > -1)
         return j[i];
     else{
-        cout << "Out of range: Point::getJac()" << endl;
+        cerr << "Out of range: Point::getJac(" << i << ")" << endl;
         return 1;
     }
 };
@@ -228,7 +228,7 @@ double Point::getJac(int i) const{
 int Point::addVec(double *nx, int n){
 
     if(n!=m_pModel->n_var){		//if new vector isn't right size
-        cout << "Error: wrong number of elements in nx" << endl;
+        cerr << "Error: wrong number of elements in nx (" << n << ")" << endl;
         return 1;			//return unsuccessfully
     }
     else{

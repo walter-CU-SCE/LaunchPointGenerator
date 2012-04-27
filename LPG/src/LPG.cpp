@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
             cout << "\t Consensus: SUM" << endl;
             break;
         default:
-            cout << "Error: Consensus out of range!\n";
+            cerr << "Error: Consensus out of range! " << CCtype << endl;
             exit(0);
             break;
     }
