@@ -7,8 +7,7 @@ using namespace LPG;
 
 
 Point::Point(ModelInfo *pModel){
-	
-    //cout << "point constructor " << endl;
+
     m_pModel = pModel;
     x = new double[m_pModel->n_var];    //an element for each variable
     c = new double[m_pModel->n_con];    //an element for each constraint
@@ -19,7 +18,6 @@ Point::Point(ModelInfo *pModel){
 
 Point::~Point(){
 
-    //cout << "point destructor "<< endl;
     delete [] x;
     x=NULL;
     delete [] c;
@@ -28,13 +26,10 @@ Point::~Point(){
     v=NULL;
     delete [] j;
     j=NULL;
-    //cout << "point destructor end "<< endl;
 };
 
 Point::Point(const Point &P){
-	
-    //cout << "copy constructor" << endl;
-	
+
     m_pModel = P.m_pModel;
     x = new double[m_pModel->n_var];
     for(int i=0; i< m_pModel->n_var; i++)
@@ -51,12 +46,11 @@ Point::Point(const Point &P){
     }
     MaxVio = P.MaxVio;		
     SumVio = P.SumVio;
-	
-    //cout << "copy constructor end" << endl;
+
 };
 
 Point& Point::operator=(const Point &P){
-    //cout << "assignment operator" << endl;
+
     if(this != &P)
     {
         delete [] x;
@@ -124,8 +118,6 @@ void Point::randLocation(){
 };
 
 void Point::refresh(){
-	
-    //cout << "refresh" << endl;
 
     //initialize violations
     MaxVio=0.0;			
@@ -177,12 +169,10 @@ void Point::refresh(){
     //for(int i=0; i<m_pModel->n_var; i++){		//for each variable
     //	cout << j[i] <<  endl;
     //}
-    //cout << "refresh end" << endl;
 };
 
 void Point::setToBounds(){
-	
-    //cout << "setToBounds" << endl;
+
     double badElement;
     for(int i=0; i<m_pModel->n_var; i++){		//for each variable
         badElement=x[i];
@@ -196,7 +186,6 @@ void Point::setToBounds(){
         }
         //cout << m_pModel->LUv[2*i] << " " << x[i] << " " << m_pModel->LUv[2*i+1] << endl;
     }
-    //cout << "setToBounds end" << endl;
 };
 
 void Point::setLocation(double *new_x){
@@ -219,29 +208,28 @@ double Point::getSumVio() const{
 
 double Point::getConVio(int i) const{
     if(i<m_pModel->n_con && i > -1)
-	return v[i];
+        return v[i];
     else{
-	cout << "Out of range: Point::getConVio()" << endl;
-	return 1;
+        cout << "Out of range: Point::getConVio()" << endl;
+        return 1;
     }
 };
 
 
 double Point::getJac(int i) const{
     if(i<m_pModel->nzc && i > -1)
-	return j[i];
+        return j[i];
     else{
-	cout << "Out of range: Point::getJac()" << endl;
-	return 1;
+        cout << "Out of range: Point::getJac()" << endl;
+        return 1;
     }
 };
 
 int Point::addVec(double *nx, int n){
-	
-    //cout << "addVec" << endl;
+
     if(n!=m_pModel->n_var){		//if new vector isn't right size
-	cout << "Error: wrong number of elements in nx" << endl;
-	return 1;			//return unsuccessfully
+        cout << "Error: wrong number of elements in nx" << endl;
+        return 1;			//return unsuccessfully
     }
     else{
         for(int i=0; i<n; i++)          //add each element
@@ -250,8 +238,7 @@ int Point::addVec(double *nx, int n){
         setToBounds();			//make sure point is in search space
         refresh();			//refresh the violation data
     }
-	
-    //cout << "addVec end" << endl;
+
     return 0;
 };
 

@@ -6,7 +6,6 @@ using namespace LPG;
 
 FeasibilityVector::FeasibilityVector(int s){
 
-    //cout << "Fv constructor" << endl;
     id = -1;                            //default to -1
     size = s;
     //cout << "size: " << size << endl;
@@ -17,10 +16,8 @@ FeasibilityVector::FeasibilityVector(int s){
 
 FeasibilityVector::~FeasibilityVector(){
 
-    //cout << "Fv deconstructor" << endl;
     delete [] v;
     v=NULL;
-    //cout << "Fv deconstructor end" << endl;
 };
 
 double FeasibilityVector::getLengthSqr() const{
@@ -65,9 +62,9 @@ double FeasibilityVector::calc(Point *P, int i){
 int FeasibilityVector::getId() const{
 
     if(id>-1)
-	return id;
+        return id;
     else{
-	cout << "Error: FeasibilityVector::getId(): Fv not calculated yet" << endl;
-	return -1;
+        cerr << "Error: FeasibilityVector::getId(): Fv not calculated yet" << endl;
+        return -1;
     }
 };

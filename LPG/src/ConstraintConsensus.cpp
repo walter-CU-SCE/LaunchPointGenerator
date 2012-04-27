@@ -43,8 +43,6 @@ ConstraintConsensus::~ConstraintConsensus(){
 
 int ConstraintConsensus::Run(const Point &S){
 
-    //cout << "ConstraintConsensus: Run" << endl;
-
     lPoints.clear();
     lPoints.push_back(S);
     lTimes.clear();
@@ -115,8 +113,6 @@ int ConstraintConsensus::Run(const Point &S){
 };
 
 void ConstraintConsensus::updateCounters(FeasibilityVector *Fv, Point *P){
-	
-    //cout << "updateCounters" << endl;
     cgrad *cg;			//iterator
 
     //update this for each type of constraint consensus!
@@ -125,30 +121,28 @@ void ConstraintConsensus::updateCounters(FeasibilityVector *Fv, Point *P){
             //cout << "Consensus: BASIC" << endl;
             //for every variable in constraint i
             for (cg=cgStart(P,Fv); cg; cg = cg->next){
-		n[cg->varno]++;
-		s[cg->varno]=s[cg->varno]+Fv->v[cg->varno];
+                n[cg->varno]++;
+                s[cg->varno]=s[cg->varno]+Fv->v[cg->varno];
             }
             break;
         case 2:
             //cout << "Consensus: SUM" << endl;
             //for every variable in constraint i
             for (cg=cgStart(P,Fv); cg; cg = cg->next){
-		n[cg->varno]++;
-		s[cg->varno]=s[cg->varno]+Fv->v[cg->varno];
+                n[cg->varno]++;
+                s[cg->varno]=s[cg->varno]+Fv->v[cg->varno];
             }
             break;
         default:
-            cout << "Consensus out of range!" << endl;
-            cout << "This should never happen! If it does there is a serious problem." << endl;
+            cerr << "Consensus out of range!" << endl;
+            cerr << "This should never happen! If it does there is a serious problem." << endl;
             exit(0);
             break;
     }
-    //cout << "updateCounters end" << endl;
 };
 
 double ConstraintConsensus::calcCv(int nvar){
 
-    //cout << "calcCv" << endl;
     lengthSqr=0;                            //reset to zero
     //update this for each type of constraint consensus!
     switch(cType){
@@ -175,11 +169,11 @@ double ConstraintConsensus::calcCv(int nvar){
             }
             break;
         default:
-            cout << "Consensus out of range!" << endl;
-            cout << "This should never happen! If it does there is a serious problem." << endl;
+            cerr << "Consensus out of range!" << endl;
+            cerr << "This should never happen! If it does there is a serious problem." << endl;
             break;
     }
-    //cout << "calcCv end" << endl;
+
     return lengthSqr;                       //return the squared length
 };
 

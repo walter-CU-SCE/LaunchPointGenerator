@@ -185,7 +185,7 @@ int main(int argc, char* argv[])
         }
         mfile.close();
     }
-    else cout << "Unable to open file: \n" << outFile;
+    else cerr << "Unable to open file: \n" << outFile;
     cout << endl;
     cout << "\t Wrote launch points to file: " << outFile << endl;
     cout << "\n**************************************************************************\n";
