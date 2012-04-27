@@ -11,7 +11,7 @@
 using namespace std;
 using namespace LPG;
 
-ClusterBuilder::ClusterBuilder(vector<Point> *lPoints, int windowSize, int maxLaunches){
+ClusterBuilder::ClusterBuilder(const vector<Point>& lPoints, int windowSize, int maxLaunches){
 
     cout << "\n**************************************************************************\n";
     cout << "\tCreate the inter-point distance distribution.\n";
@@ -20,11 +20,8 @@ ClusterBuilder::ClusterBuilder(vector<Point> *lPoints, int windowSize, int maxLa
     time = 0.0;                     //initialize time
     w = windowSize;
     tau = maxLaunches;
-    allPoints.clear();
-    for (vector<Point>::iterator li = lPoints->begin(); li != lPoints->end();++li){
-        allPoints.push_back(*li);
-    }
-    promPeaks.clear();
+    allPoints = lPoints;
+
     calcDistances();                //calcualte the distances between each point, dmin, dmax, and dwidth
     calcFrequencies();              //calculate the interpoint frequency distribution
 
@@ -90,7 +87,7 @@ ClusterBuilder::~ClusterBuilder(){
 
 };
 
-double ClusterBuilder::getTime(){
+double ClusterBuilder::getTime() const {
     return time;
 };
 
@@ -174,7 +171,7 @@ void ClusterBuilder::calcFrequencies(){
     
 };
 
-vector<Freq> ClusterBuilder::getFreq(){
+vector<Freq> ClusterBuilder::getFreq() const {
 
     if(F.size()<2){
         cout << "ClusterBuilder: F isn't defined yet!" << endl;
@@ -183,7 +180,7 @@ vector<Freq> ClusterBuilder::getFreq(){
     return F;
 };
 
-vector<Cluster> ClusterBuilder::getClusters(){
+vector<Cluster> ClusterBuilder::getClusters() const {
 
     if(lClusters.size()<1){
         cout << "ClusterBuilder: no clusters available yet!" << endl;
@@ -192,10 +189,10 @@ vector<Cluster> ClusterBuilder::getClusters(){
     return lClusters;
 };
 
-vector<Point> ClusterBuilder::getLaunchPoints(){
+vector<Point> ClusterBuilder::getLaunchPoints() const {
   
     vector<Point> lp;
-    lp.clear();
+
     for(int i=0; i<lClusters.size(); i++){
         lp.push_back(lClusters[i].getLaunchPoint());
     }

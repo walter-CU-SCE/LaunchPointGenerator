@@ -23,7 +23,7 @@ FeasibilityVector::~FeasibilityVector(){
     //cout << "Fv deconstructor end" << endl;
 };
 
-double FeasibilityVector::getLengthSqr(){
+double FeasibilityVector::getLengthSqr() const{
 
     return lengthSqr;
 };
@@ -62,7 +62,7 @@ double FeasibilityVector::calc(Point *P, int i){
     return lengthSqr;
 };
 
-int FeasibilityVector::getId(){
+int FeasibilityVector::getId() const{
 
     if(id>-1)
 	return id;

@@ -25,7 +25,7 @@ namespace LPG{
 
             ModelInfo *m_pModel;    //copy of model pointer
 
-            void writePlotPoints(vector<Point> *lPoints, string fileTitle); //write PlotPoints file
+            void writePlotPoints(const vector<Point>& lPoints, string fileTitle); //write PlotPoints file
             void writePlotFreqDist(vector<Freq> F, string fileTitle);       //write FreqDist file
     };
 

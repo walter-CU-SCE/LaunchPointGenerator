@@ -40,13 +40,13 @@ namespace LPG{
             //ConstraintConsensus& operator=(const ConstraintConsensus &CC);//assignment operator
 
             void printPoints();                         //output list of points
-            int Run(Point &P);                          //executes main loop from P
+            int Run(const Point &P);                          //executes main loop from P
             void updateCounters(FeasibilityVector *Fv,  //feasibilty vector
                 Point *P);                              //current point
             double calcCv(int n);                       //calculate the consensus vector using counters
                                                         //number of variables, return lengthSqr
-            void getBestPoint(Point *P);                //return the point in the list in terms of MaxVio
-            double getTotalTime();                      //return the total time taken by CC run
+            void getBestPoint(Point *P) const;                //return the point in the list in terms of MaxVio
+            double getTotalTime() const;                      //return the total time taken by CC run
     };
 };
 #endif

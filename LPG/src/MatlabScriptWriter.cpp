@@ -21,7 +21,7 @@ MatlabScriptWriter::~MatlabScriptWriter(){
 
 };
 
-void MatlabScriptWriter::writePlotPoints(vector<Point> *lPoints, string fileTitle){
+void MatlabScriptWriter::writePlotPoints(const vector<Point>& lPoints, string fileTitle){
 
     string dir = MatlabScriptDir;                 //directory to place matlab scripts
     dir.append(fileTitle);                          //append the file title
@@ -41,7 +41,7 @@ void MatlabScriptWriter::writePlotPoints(vector<Point> *lPoints, string fileTitl
 
             double *loc;
             loc = new double[m_pModel->n_var];
-            for (vector<Point>::iterator li = lPoints->begin(); li != lPoints->end();++li){
+            for (vector<Point>::const_iterator li = lPoints.begin(); li != lPoints.end();++li){
                 li->getLocation(loc);
                 //cout << loc[0] << " , " << loc[1] << endl;
                 mfile << loc[0] << " " << loc[1] << ";  ";

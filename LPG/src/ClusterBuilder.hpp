@@ -14,12 +14,12 @@ namespace LPG{
 
     struct PromPeak{        //structure for prominent peaks
         int bin;            //index of pp
-        double d;           //distance pp corrisponds to
+        double d;           //distance pp corresponds to
         int F;           //frequency at index
     };
 
     struct Dist{
-        int p1;             //index of fisrt point
+        int p1;             //index of first point
         int p2;             //index of second point
         double dist;        //distance between points
     };
@@ -41,7 +41,7 @@ namespace LPG{
             double dmax;                    //maximum distance
             double dwidth;                  //width of each bin
             vector<Dist> d;                 //distances
-            vector<Freq> F;                 //freuqencies
+            vector<Freq> F;                 //frequencies
             double time;                    //time variable
             TimeKeeper Tk;                  //measure elapsed time
 
@@ -51,13 +51,13 @@ namespace LPG{
             int cluster();                  //use sinlge linkage and cDist to form clusters
 
         public:
-            ClusterBuilder(vector<Point> *lPoints, int w, int tau);
+            ClusterBuilder(const vector<Point>& lPoints, int w, int tau);
             ~ClusterBuilder();              //destructor
 
-            vector<Freq> getFreq();         //returns the frequency distrbution
-            vector<Cluster> getClusters();  //returns the vector of clusters
-            vector<Point> getLaunchPoints();//return a vector of launch points
-            double getTime();               //return calculation time
+            vector<Freq> getFreq() const;         //returns the frequency distrbution
+            vector<Cluster> getClusters() const;  //returns the vector of clusters
+            vector<Point> getLaunchPoints() const;//return a vector of launch points
+            double getTime() const;               //return calculation time
     };
 
 };

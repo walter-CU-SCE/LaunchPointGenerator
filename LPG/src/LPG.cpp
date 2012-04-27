@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <vector>
 
-#include "LPG.hpp"
 #include "ModelInfo.hpp"
 #include "Point.hpp"
 #include "ConstraintConsensus.hpp"
@@ -34,8 +33,8 @@ int main(int argc, char* argv[])
         cout << "Exiting CCopt\n" << endl;
         return 1;
     }
-    stub=argv[1];                   //get model name from command line
-    ModelInfo model(stub);          //create model
+
+    ModelInfo model(argv[1]);          //create model
     ModelInfo *pModel = &model;     //pointer
     pModel->print();                //print the basic model info
 
@@ -131,18 +130,18 @@ int main(int argc, char* argv[])
 
     //write m files for plotting the start and end points
     MatlabScriptWriter MLS(pModel);
-    MLS.writePlotPoints(&sPoints, "startPoints.m");
-    MLS.writePlotPoints(&bPoints, "bestPoints.m");
+    MLS.writePlotPoints(sPoints, "startPoints.m");
+    MLS.writePlotPoints(bPoints, "bestPoints.m");
 
     CBTime=0.0;
     Tk_util.reset();
     //create clusters
-    ClusterBuilder CB(&bPoints, w, tau);
+    ClusterBuilder CB(bPoints, w, tau);
     CBTime = Tk_util.getElapsedTimeSec();
         
     //write m files for the inter-points frequency distribution and launch points
     MLS.writePlotFreqDist(CB.getFreq(), "freqDist.m");
-    MLS.writePlotPoints(&CB.getLaunchPoints(), "launchPoints.m");
+    MLS.writePlotPoints(CB.getLaunchPoints(), "launchPoints.m");
 
     LPTime=0.0;
     Tk_util.reset();

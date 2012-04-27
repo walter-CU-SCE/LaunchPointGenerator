@@ -17,7 +17,7 @@ ModelInfo::ModelInfo(char *stub){
 };
 
 
-void ModelInfo::print(){
+void ModelInfo::print() const{
 
     cout << "\t - Model Details - " << endl;
     cout << "\t -----------------------" << endl;
@@ -27,15 +27,15 @@ void ModelInfo::print(){
     cout << "\t   nlc: " << nlc << endl;
 };
 
-double ModelInfo::getBound(){
+double ModelInfo::getBound() const{
     return abound;
 };
 
-double ModelInfo::getInfty(){
+double ModelInfo::getInfty() const{
     return Infinity;
 };
 
-double ModelInfo::getNegInfty(){
+double ModelInfo::getNegInfty() const{
     return negInfinity;
 };
 

@@ -41,10 +41,10 @@ namespace LPG{
             //~ModelInfo();
             //int get_n_var();
             //int get_n_con();
-            void print();               //output basid data
-            double getBound();          //return artificial bound value
-            double getInfty();          //return infinity value
-            double getNegInfty();       //return -infinity value
+            void print() const;               //output basid data
+            double getBound() const;          //return artificial bound value
+            double getInfty() const;          //return infinity value
+            double getNegInfty() const;       //return -infinity value
     };
 
 };

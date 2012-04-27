@@ -27,9 +27,7 @@ ConstraintConsensus::ConstraintConsensus(double a, double b, int c, int g, int t
         cv[i]=0.0;
     }
 
-    lPoints.clear();            //clear list, size now zero
     //lPoints.push_back(P);     //add initial point as first element
-    lTimes.clear();             //clear list, first entry added after first point calculated
 };
 
 ConstraintConsensus::~ConstraintConsensus(){
@@ -43,7 +41,7 @@ ConstraintConsensus::~ConstraintConsensus(){
 };
 
 
-int ConstraintConsensus::Run(Point &S){
+int ConstraintConsensus::Run(const Point &S){
 
     //cout << "ConstraintConsensus: Run" << endl;
 
@@ -200,11 +198,11 @@ void ConstraintConsensus::printPoints(){
     }
 };
 
-void ConstraintConsensus::getBestPoint(Point *P){
+void ConstraintConsensus::getBestPoint(Point *P) const {
 
     //Point B(lPoints.begin()->m_pModel);
     double MinVio = DBL_MAX;
-    for (vector<Point>::iterator li = lPoints.begin(); li != lPoints.end();++li){
+    for (vector<Point>::const_iterator li = lPoints.begin(); li != lPoints.end();++li){
         if(li->getMaxVio() < MinVio){
             MinVio=li->getMaxVio();
             //cout << MinVio << endl;
@@ -215,7 +213,7 @@ void ConstraintConsensus::getBestPoint(Point *P){
     
 };
 
-double ConstraintConsensus::getTotalTime(){
+double ConstraintConsensus::getTotalTime() const {
 
-  return lTimes[lTimes.size()-1];
+  return lTimes.back();
 };

@@ -9,17 +9,16 @@ using namespace std;
 namespace LPG{
 
 
-	
+	// user space execution time counter
+	// POSIX specific code!
 	class TimeKeeper{		
 	  private:
 		struct timeval startTime;	//time clock starts
-		struct timeval tempTime;	//general time variable
-		struct rusage ru;		//to query system
 	  public:
 		TimeKeeper();
 		
-		double getElapsedTimeSec(); 	//get the time elapsed from startTime til now
-                void reset();                   //set the timer
+		double getElapsedTimeSec() const; 	//get the time elapsed from startTime til now
+		void reset();                   //set the timer
 	};
 
 };

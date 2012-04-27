@@ -24,7 +24,7 @@ namespace LPG{
             friend class ClusterBuilder;
 
             void addPoint(Point P);                  //add a point to the cluster
-            Point getLaunchPoint();                 //get the launch point 
+            Point getLaunchPoint() const;                 //get the launch point
 
     };
 

@@ -209,15 +209,15 @@ void Point::setLocation(double *new_x){
     refresh();		//refresh the violation data
 };
 
-double Point::getMaxVio(){
+double Point::getMaxVio() const{
     return MaxVio;
 };
 
-double Point::getSumVio(){
+double Point::getSumVio() const{
     return SumVio;
 };
 
-double Point::getConVio(int i){
+double Point::getConVio(int i) const{
     if(i<m_pModel->n_con && i > -1)
 	return v[i];
     else{
@@ -227,7 +227,7 @@ double Point::getConVio(int i){
 };
 
 
-double Point::getJac(int i){
+double Point::getJac(int i) const{
     if(i<m_pModel->nzc && i > -1)
 	return j[i];
     else{
@@ -255,13 +255,13 @@ int Point::addVec(double *nx, int n){
     return 0;
 };
 
-void Point::getLocation(double* loc){
+void Point::getLocation(double* loc) const{
 
     for(int i=0; i<m_pModel->n_var; i++)
         loc[i]=x[i];
 };
 
-double Point::getDist(Point* P){
+double Point::getDist(Point* P) const{
 
     double dist = 0;
     double *loc;
@@ -276,7 +276,7 @@ double Point::getDist(Point* P){
     return dist;
 };
 
-bool Point::morePromising(Point P){
+bool Point::morePromising(Point P) const{
 
     //returns true if P is more promising than this
     bool mp=false;
@@ -293,7 +293,7 @@ bool Point::morePromising(Point P){
     return mp;
 };
 
-string Point::getLocation(){
+string Point::getLocation() const{
   stringstream ss;
   ss << "[";
   for(int i=0; i<m_pModel->n_var-1; i++){

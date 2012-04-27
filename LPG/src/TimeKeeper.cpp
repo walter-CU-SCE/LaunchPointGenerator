@@ -11,20 +11,22 @@ TimeKeeper::TimeKeeper(){
 	
 };
 
-double TimeKeeper::getElapsedTimeSec(){
+double TimeKeeper::getElapsedTimeSec() const{
 
+    rusage ru;
     getrusage(RUSAGE_SELF, &ru);
-    tempTime=ru.ru_utime;		//get time now
+
+    const timeval curTime=ru.ru_utime;	// time now
 
     double tS = startTime.tv_sec + (startTime.tv_usec)*1e-6;
-    double tE = tempTime.tv_sec  + (tempTime.tv_usec)*1e-6;
+    double tE = curTime.tv_sec  + (curTime.tv_usec)*1e-6;
 
     return tE-tS;
 
 };
 
 void TimeKeeper::reset(){
-
+    rusage ru;
     getrusage(RUSAGE_SELF, &ru);
     startTime=ru.ru_utime;		//set start time
 };
