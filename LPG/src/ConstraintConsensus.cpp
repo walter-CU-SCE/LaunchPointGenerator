@@ -136,7 +136,7 @@ void ConstraintConsensus::updateCounters(FeasibilityVector *Fv, Point *P){
         default:
             cerr << "Consensus out of range! " << cType << endl;
             cerr << "This should never happen! If it does there is a serious problem." << endl;
-            exit(0);
+            exit(EXIT_FAILURE);
             break;
     }
 };

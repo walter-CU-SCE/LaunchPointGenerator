@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
             break;
         default:
             cerr << "Error: Consensus out of range! " << CCtype << endl;
-            exit(0);
+            exit(EXIT_FAILURE);
             break;
     }
     cout << endl;

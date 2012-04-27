@@ -72,7 +72,7 @@ ClusterBuilder::ClusterBuilder(const vector<Point>& lPoints, int windowSize, int
     }                                                       //no: decrement w, try again
     if(!finished){
         cout << "ClusterBuilder Failed! w==" << w << endl;
-        exit(0);
+        exit(EXIT_FAILURE);
     }
     cout    << "\t-------------------------------------------------------\n";
     cout << "\t"    << "\t Total time to find clusters: " << Tk.getElapsedTimeSec() << endl;
@@ -175,7 +175,7 @@ vector<Freq> ClusterBuilder::getFreq() const {
 
     if(F.size()<2){
         cerr << "ClusterBuilder: F isn't defined yet!" << endl;
-        exit(0);
+        exit(EXIT_FAILURE);
     }
     return F;
 };
@@ -184,7 +184,7 @@ vector<Cluster> ClusterBuilder::getClusters() const {
 
     if(lClusters.size()<1){
         cerr << "ClusterBuilder: no clusters available yet!" << endl;
-        exit(0);
+        exit(EXIT_FAILURE);
     }
     return lClusters;
 };
@@ -217,7 +217,7 @@ void ClusterBuilder::extractPP(){
         }
         if(w<1){
             cerr << "Critical distance extraction fail! w=" << w << endl;
-            exit(0);
+            exit(EXIT_FAILURE);
         }
         for(int i=w; i< F.size()-w; i++){
             bool pp=true;
@@ -240,7 +240,7 @@ void ClusterBuilder::extractPP(){
         }
         else if(promPeaks.size()==0 && w==1){
             cerr << "Failed to extract critical distance!" << endl;
-            exit(0);
+            exit(EXIT_FAILURE);
         }
     }
     //cout << "number of PP: " << promPeaks.size() << endl;
