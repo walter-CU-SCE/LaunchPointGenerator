@@ -8,6 +8,12 @@ namespace LPG{
 #define MODELINFO_HPP
 
 //make life easier: these are defined in asl, but without the "m_pModel->" part
+#ifdef conval
+#undef conval
+#endif
+#ifdef jacval
+#undef jacval
+#endif
 #define conval(x,r,ne)	(*((ASL*)m_pModel->asl)->p.Conval)((ASL*)m_pModel->asl,x,r,ne)
 #define jacval(x,j,ne)	(*((ASL*)m_pModel->asl)->p.Jacval)((ASL*)m_pModel->asl,x,j,ne)
 #define cgStart(P,Fv)   P->m_pModel->asl->i.Cgrad_[Fv->getId()]
