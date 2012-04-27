@@ -10,7 +10,6 @@ namespace LPG{
 #define POINT_HPP
 
     const double FeasThres = 1e-6;              //point is feasible if max violation is less than FeasThres
-    typedef long fint;
 	
     class Point{
         private:
