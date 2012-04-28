@@ -1,17 +1,17 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
-#include <iostream> 
+#include <iostream>
 
 #include "ModelInfo.hpp"
 
 using namespace std;
 
-namespace LPG{
+namespace LPG {
 
     const double FeasThres = 1e-6;              //point is feasible if max violation is less than FeasThres
-	
-    class Point{
+
+    class Point {
         private:
             double *x;                          //location
             bool feasible;                      //in feasible region?
@@ -20,7 +20,7 @@ namespace LPG{
             double MaxVio;                      //max violation
             double SumVio;                      //sum of absolute violations
             double *j;                          //jacval return values
-            
+
             void refresh();                     //refresh violation data
             void setToBounds();			//reset out of bound variables
 
@@ -28,7 +28,7 @@ namespace LPG{
             Point(ModelInfo *pModel);           //makes a point, initializes
             ~Point();                           //destructor
             Point(const Point &P);              //copy constructor
-            Point& operator=(const Point &P);	//assignment operator
+            Point &operator=(const Point &P);   //assignment operator
             bool operator<(const Point &P) const;   //for sorting points
 
             ModelInfo *m_pModel;		//copy of model pointer

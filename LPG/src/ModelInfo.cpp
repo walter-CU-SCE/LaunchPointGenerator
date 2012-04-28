@@ -5,19 +5,19 @@
 using namespace std;
 using namespace LPG;
 
-ModelInfo::ModelInfo(char *stub){
-	
-    abound=10000;                           //artificial bound 10^4
-    Infinity=DBL_MAX;                       //infinity
-    negInfinity=-Infinity;                  //negative infinity
-    name=stub;                              //set the name
+ModelInfo::ModelInfo(char *stub) {
+
+    abound = 10000;                         //artificial bound 10^4
+    Infinity = DBL_MAX;                     //infinity
+    negInfinity = -Infinity;                //negative infinity
+    name = stub;                            //set the name
     asl = ASL_alloc(ASL_read_pfgh);         //allocate asl structure
-    nl = jac0dim(stub,(fint)strlen(stub));  //read in model file
-    pfgh_read(nl,0);                        //get all the data
+    nl = jac0dim(stub, (fint)strlen(stub)); //read in model file
+    pfgh_read(nl, 0);                       //get all the data
 };
 
 
-void ModelInfo::print() const{
+void ModelInfo::print() const {
 
     cout << "\t - Model Details - " << endl;
     cout << "\t -----------------------" << endl;
@@ -27,15 +27,15 @@ void ModelInfo::print() const{
     cout << "\t   nlc: " << nlc << endl;
 };
 
-double ModelInfo::getBound() const{
+double ModelInfo::getBound() const {
     return abound;
 };
 
-double ModelInfo::getInfty() const{
+double ModelInfo::getInfty() const {
     return Infinity;
 };
 
-double ModelInfo::getNegInfty() const{
+double ModelInfo::getNegInfty() const {
     return negInfinity;
 };
 

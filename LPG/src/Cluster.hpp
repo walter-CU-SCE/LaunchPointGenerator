@@ -8,9 +8,9 @@
 
 using namespace std;
 
-namespace LPG{
+namespace LPG {
 
-    class Cluster{
+    class Cluster {
         private:
             vector<Point> lPoints;                  //list of points in cluster
             int lpIndex;                            //index of launch point

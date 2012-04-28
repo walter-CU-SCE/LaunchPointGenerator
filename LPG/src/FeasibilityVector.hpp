@@ -1,7 +1,7 @@
 #ifndef FEASIBILITYVECTOR_HPP
 #define FEASIBILITYVECTOR_HPP
 
-#include <iostream> 
+#include <iostream>
 #include <list>
 
 #include "ModelInfo.hpp"
@@ -9,25 +9,25 @@
 
 using namespace std;
 
-namespace LPG{
+namespace LPG {
 
-    class FeasibilityVector{
+    class FeasibilityVector {
         private:
             double *v;                          //the actual vector
             int size;                           //number of elements
-            double lengthSqr;			//the norm2 length squared aka ||feasibility distance||^2
+            double lengthSqr;           //the norm2 length squared aka ||feasibility distance||^2
             int id;                             //the constraint number
         public:
             FeasibilityVector(int s);           //create Fv of size s
             ~FeasibilityVector();
-            //FeasibilityVector(const FeasibilityVector &Fv);			//copy constructor
-            //FeasibilityVector& operator=(const FeasibilityVector &Fv);	//assignment operator
+            //FeasibilityVector(const FeasibilityVector &Fv);           //copy constructor
+            //FeasibilityVector& operator=(const FeasibilityVector &Fv);    //assignment operator
 
             friend class ConstraintConsensus;   // constraint consensus is a friend class to access v in ConstraintConsensus::updateCounters()
 
             double getLengthSqr() const;              //return the norm2 length squared aka ||feasibility distance||^2
             void clear();                       //set all values to 0
-            double calc(Point *P, int i);	//calculate Fv to constraint i from Point P
+            double calc(Point *P, int i);   //calculate Fv to constraint i from Point P
             int getId() const;                        //return the constraint number Fv was calculated for, -1 if not set
     };
 

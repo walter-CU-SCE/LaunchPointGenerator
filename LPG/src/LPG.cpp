@@ -13,8 +13,7 @@
 using namespace std;
 using namespace LPG;
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
     TimeKeeper Tk_all;                  //keep track of total time
     TimeKeeper Tk_util;                 //used periodically
     double CCTime;                      //constraint consensus time
@@ -28,7 +27,7 @@ int main(int argc, char* argv[])
 
     srand(time(NULL));              //initialize random seed
 
-    if(argv[1]==NULL){
+    if (argv[1] == NULL) {
         cout << "\nNo model supplied!" << endl;
         cout << "Exiting CCopt\n" << endl;
         return 1;
@@ -45,7 +44,7 @@ int main(int argc, char* argv[])
     int mu = 100;                   //CC: maximum iterations
     int CCtype = 2;                 //CC: concensus type 1=basic, 2=sum
     double maxTime = 0.01;          //CC: max run time
-    int gamma =0;                   //CC: augmentaion period !!!not implemented yet
+    int gamma = 0;                  //CC: augmentaion period !!!not implemented yet
     int w = 3;                      //ClusterBuilder: window size
     int tau = 25;                   //ClusterBuilder: max number of clusters
     int p = 150;                     //number of initial sample points
@@ -57,18 +56,22 @@ int main(int argc, char* argv[])
     cout << "\t      beta: " << beta << endl;
     cout << "\t        mu: " << mu << endl;
     cout << "\t   maxTime: " << maxTime << endl;
-    switch(CCtype){
+
+    switch (CCtype) {
         case 1:
             cout << "\t Consensus: BASIC" << endl;
             break;
+
         case 2:
             cout << "\t Consensus: SUM" << endl;
             break;
+
         default:
             cerr << "Error: Consensus out of range! " << CCtype << endl;
             exit(EXIT_FAILURE);
             break;
     }
+
     cout << endl;
     cout << "\t - Clustering Details - " << endl;
     cout << "\t -----------------------" << endl;
@@ -85,11 +88,12 @@ int main(int argc, char* argv[])
     vector<Point> sPoints;
     sPoints.clear();
     Point X(pModel);
-    for(int i=0; i<p; i++){
+
+    for (int i = 0; i < p; i++) {
         X.randLocation();
         sPoints.push_back(X);
     }
-    
+
     //run constraint consensus from start points
     vector<Point> bPoints;
     bPoints.clear();
@@ -97,7 +101,8 @@ int main(int argc, char* argv[])
     bTimes.clear();
     ConstraintConsensus CC(alpha, beta, mu, gamma, CCtype, pModel, maxTime);
     Point B(pModel);
-    for (vector<Point>::iterator li = sPoints.begin(); li != sPoints.end();++li){
+
+    for (vector<Point>::iterator li = sPoints.begin(); li != sPoints.end(); ++li) {
         CC.Run(*li);
         CC.getBestPoint(&B);
         bPoints.push_back(B);
@@ -116,14 +121,16 @@ int main(int argc, char* argv[])
     cout    << "\t" << "------------------------------------------------------\n";
 
 
-    CCTime=0.0;
-    for (int i=0; i<bPoints.size(); i++){
+    CCTime = 0.0;
+
+    for (int i = 0; i < bPoints.size(); i++) {
         cout    << "\t" << setw(8)  << setiosflags(ios::fixed) <<setprecision(3) << i
                         << setw(14) << setiosflags(ios::fixed) <<setprecision(3) << sPoints[i].getMaxVio()
                         << setw(14) << setiosflags(ios::fixed) <<setprecision(3) << bPoints[i].getMaxVio()
                         << setw(14) << setiosflags(ios::fixed) <<setprecision(3) << bTimes[i] << endl;
-        CCTime+=bTimes[i];
+        CCTime += bTimes[i];
     }
+
     cout    << "\t" << "------------------------------------------------------\n";
     cout    << "\t" << "\t Total time running CC: " << CCTime << endl;
 
@@ -133,17 +140,17 @@ int main(int argc, char* argv[])
     MLS.writePlotPoints(sPoints, "startPoints.m");
     MLS.writePlotPoints(bPoints, "bestPoints.m");
 
-    CBTime=0.0;
+    CBTime = 0.0;
     Tk_util.reset();
     //create clusters
     ClusterBuilder CB(bPoints, w, tau);
     CBTime = Tk_util.getElapsedTimeSec();
-        
+
     //write m files for the inter-points frequency distribution and launch points
     MLS.writePlotFreqDist(CB.getFreq(), "freqDist.m");
     MLS.writePlotPoints(CB.getLaunchPoints(), "launchPoints.m");
 
-    LPTime=0.0;
+    LPTime = 0.0;
     Tk_util.reset();
     cout << "\n**************************************************************************\n";
     cout << "\tCalculate and sort the launch points.\n";
@@ -152,15 +159,17 @@ int main(int argc, char* argv[])
                  << setw(14) << "Violation"
                  << endl;
     cout << "\t---------------------------------\n";
-    for(int i=0; i<CB.getLaunchPoints().size(); i++){
+
+    for (int i = 0; i < CB.getLaunchPoints().size(); i++) {
         cout << "\t"    << setw(14) << i+1
                         << setw(14) << CB.getLaunchPoints()[i].getMaxVio()
                         << endl;
 
     }
+
     cout << endl;
     cout << "\t\t There are " << CB.getLaunchPoints().size() << " suggested launch points" << endl;
-    LPTime=Tk_util.getElapsedTimeSec();
+    LPTime = Tk_util.getElapsedTimeSec();
 
     cout << "\n**************************************************************************\n";
     cout << endl;
@@ -171,25 +180,29 @@ int main(int argc, char* argv[])
     cout << "\t\t Calculating Launch Points: " << LPTime << endl;
     cout << "\t---------------------------------------------" << endl;
     cout << "\t\t                Total Time: " << Tk_all.getElapsedTimeSec() << endl;
-    
+
     //write launch points out to file
     string outFile = "../tmp/LaunchPoints.data";
     ofstream mfile(outFile.c_str());                //open stream
-    if (mfile.is_open())
-    {
-        for(int i=0; i<CB.getLaunchPoints().size(); i++){
+
+    if (mfile.is_open()) {
+        for (int i = 0; i < CB.getLaunchPoints().size(); i++) {
             //to console
             //cout << "Point" << i << " = " << CB.getLaunchPoints()[i].getLocation() << endl;
             //to file
             mfile << "Point" << i << " = " << CB.getLaunchPoints()[i].getLocation() << endl;
         }
+
         mfile.close();
+
+    } else {
+        cerr << "Unable to open file: \n" << outFile;
     }
-    else cerr << "Unable to open file: \n" << outFile;
+
     cout << endl;
     cout << "\t Wrote launch points to file: " << outFile << endl;
     cout << "\n**************************************************************************\n";
-    
+
 
     return 0;
 };

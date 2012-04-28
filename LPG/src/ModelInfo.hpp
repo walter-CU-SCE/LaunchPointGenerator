@@ -5,7 +5,7 @@
 
 #include "../../solvers/asl.h"
 
-namespace LPG{
+namespace LPG {
 
 //make life easier: these are defined in asl, but without the "m_pModel->" part
 #ifdef conval
@@ -14,12 +14,12 @@ namespace LPG{
 #ifdef jacval
 #undef jacval
 #endif
-#define conval(x,r,ne)	(*((ASL*)m_pModel->asl)->p.Conval)((ASL*)m_pModel->asl,x,r,ne)
-#define jacval(x,j,ne)	(*((ASL*)m_pModel->asl)->p.Jacval)((ASL*)m_pModel->asl,x,j,ne)
+#define conval(x,r,ne)  (*((ASL*)m_pModel->asl)->p.Conval)((ASL*)m_pModel->asl,x,r,ne)
+#define jacval(x,j,ne)  (*((ASL*)m_pModel->asl)->p.Jacval)((ASL*)m_pModel->asl,x,j,ne)
 #define cgStart(P,Fv)   P->m_pModel->asl->i.Cgrad_[Fv->getId()]
 
-    
-    class ModelInfo{
+
+    class ModelInfo {
         private:
             char *name;                 //model name
             FILE *nl;                   //.nl file

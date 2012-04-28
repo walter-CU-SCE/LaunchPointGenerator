@@ -10,26 +10,26 @@
 
 using namespace std;
 
-namespace LPG{
+namespace LPG {
 
-    struct PromPeak{        //structure for prominent peaks
+    struct PromPeak {       //structure for prominent peaks
         int bin;            //index of pp
         double d;           //distance pp corresponds to
         int F;           //frequency at index
     };
 
-    struct Dist{
+    struct Dist {
         int p1;             //index of first point
         int p2;             //index of second point
         double dist;        //distance between points
     };
 
-    struct Freq{
+    struct Freq {
         int F;              //frequency
         double d;           //bin center
     };
 
-    class ClusterBuilder{
+    class ClusterBuilder {
         private:
             vector<Point> allPoints;        //all points
             vector<PromPeak> promPeaks;     //prominent peaks
@@ -51,7 +51,7 @@ namespace LPG{
             int cluster();                  //use sinlge linkage and cDist to form clusters
 
         public:
-            ClusterBuilder(const vector<Point>& lPoints, int w, int tau);
+            ClusterBuilder(const vector<Point> &lPoints, int w, int tau);
             ~ClusterBuilder();              //destructor
 
             vector<Freq> getFreq() const;         //returns the frequency distrbution
