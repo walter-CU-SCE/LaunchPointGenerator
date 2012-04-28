@@ -308,7 +308,7 @@ bool Point::morePromising(Point P) const {
 
     if (this->feasible && P.feasible) {
 
-        //both feasible, until obj implemented, current is more promising
+        //both feasible, until obj implemented, current is more promising (TODO)
     } else if (P.feasible) {
         mp = true;
 

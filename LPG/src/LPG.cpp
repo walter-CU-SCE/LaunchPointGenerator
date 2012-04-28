@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     int mu = 100;                   //CC: maximum iterations
     int CCtype = 2;                 //CC: concensus type 1=basic, 2=sum
     double maxTime = 0.01;          //CC: max run time
-    int gamma = 0;                  //CC: augmentaion period !!!not implemented yet
+    int gamma = 0;                  //CC: augmentation period !!! TODO:not implemented yet
     int w = 3;                      //ClusterBuilder: window size
     int tau = 25;                   //ClusterBuilder: max number of clusters
     int p = 150;                     //number of initial sample points
