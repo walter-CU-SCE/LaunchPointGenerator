@@ -55,6 +55,7 @@ void MatlabScriptWriter::writePlotPoints(const vector<Point> &lPoints, string fi
             mfile << "scatter(x(:,1), x(:,2));\n";  //scatter plot
             mfile << "axis([" << m_pModel->LUv[0] << " " << m_pModel->LUv[1] << " " << m_pModel->LUv[2] << " " << m_pModel->LUv[3] << "]);\n";
             mfile.close();
+            delete [] loc;
 
         } else {
             cout << "Unable to open file: \n" << dir;
