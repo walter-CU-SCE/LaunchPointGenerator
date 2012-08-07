@@ -304,37 +304,26 @@ int ClusterBuilder::cluster() {
     //cout << "Add Cluster to list" << endl;
     for (int k = 1; k < allPoints.size(); k++) { //for each point
 
-        //cout << "k: " << k << endl;
         bool assigned = false;
 
-        while (assigned == false) {
-            //cout << "Enter while loop" << endl;
-            for (int i = 0; i < lClusters.size(); i++) { //for each cluster
-                //cout << "i: " << i << " size: " << lClusters.size() << endl;
-                for (int j = 0; j < lClusters[i].lPoints.size(); j++) { //for each point in cluster
-                    //cout << "j: " << j << " size: " << lClusters[i].lPoints.size() << endl;
-                    if (allPoints[k].getDist(&lClusters[i].lPoints[j]) < cDist) {
-                        lClusters[i].addPoint(allPoints[k]);
-                        //cout << "Add Point " << k << " to lClusters " << i << endl;
-                        assigned = true;
-                    }
-
-                    if (assigned) {
-                        break;
-                    }
-                }
-
-                if (assigned) {
+        for (int i = 0; i < lClusters.size(); i++) { //for each cluster
+            for (int j = 0; j < lClusters[i].lPoints.size(); j++) { //for each point in cluster
+                if (allPoints[k].getDist(&lClusters[i].lPoints[j]) < cDist) {
+                    lClusters[i].addPoint(allPoints[k]);
+                    assigned = true;
                     break;
                 }
             }
 
-            if (assigned == false) {
-                Cluster nC(allPoints[k]);
-                lClusters.push_back(nC);
-                //cout << "Add Cluster to list" << endl;
-                assigned == true;
+            if (assigned) {
+                break;
             }
+        }
+
+        if (assigned == false) {
+            Cluster nC(allPoints[k]);
+            lClusters.push_back(nC);
+            //cout << "Add Cluster to list" << endl;
         }
 
         //cout << lClusters.size() << endl;
